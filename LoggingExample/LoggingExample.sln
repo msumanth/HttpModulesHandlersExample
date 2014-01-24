@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingExample", "LoggingExample\LoggingExample.csproj", "{3B154D9D-978B-4979-A0AB-3B93BD8E9771}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingInformation", "LoggingInformation\LoggingInformation.csproj", "{61245960-8D94-4758-A4A6-63C87E21670D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B154D9D-978B-4979-A0AB-3B93BD8E9771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B154D9D-978B-4979-A0AB-3B93BD8E9771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B154D9D-978B-4979-A0AB-3B93BD8E9771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B154D9D-978B-4979-A0AB-3B93BD8E9771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61245960-8D94-4758-A4A6-63C87E21670D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61245960-8D94-4758-A4A6-63C87E21670D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61245960-8D94-4758-A4A6-63C87E21670D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61245960-8D94-4758-A4A6-63C87E21670D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

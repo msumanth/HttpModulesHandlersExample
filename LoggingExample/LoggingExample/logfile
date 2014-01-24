@@ -1,0 +1,6 @@
+ERROR 2014-01-14 14:21:42,596 109789ms _Default               Page_Load          - System.Exception: Exception of type 'System.Exception' was thrown.
+DEBUG 2014-01-14 14:21:42,683 109876ms _Default               Page_Load          - Debug logging
+INFO  2014-01-14 14:21:42,684 109877ms _Default               Page_Load          - Info logging
+WARN  2014-01-14 14:21:42,685 109878ms _Default               Page_Load          - Warn logging
+ERROR 2014-01-14 14:21:42,686 109879ms _Default               Page_Load          - Error logging
+FATAL 2014-01-14 14:21:42,687 109880ms _Default               Page_Load          - Fatal logging

@@ -1,0 +1,6 @@
+2014-01-11 14:44:10,447 [5] ERROR LoggingExample._Default - System.Exception: Exception of type 'System.Exception' was thrown.
+2014-01-11 14:44:10,542 [5] DEBUG LoggingExample._Default - Debug logging
+2014-01-11 14:44:10,542 [5] INFO LoggingExample._Default - Info logging
+2014-01-11 14:44:10,542 [5] WARN LoggingExample._Default - Warn logging
+2014-01-11 14:44:10,543 [5] ERROR LoggingExample._Default - Error logging
+2014-01-11 14:44:10,543 [5] FATAL LoggingExample._Default - Fatal logging

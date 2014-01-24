@@ -1,0 +1,5 @@
+DEBUG 2014-01-18 17:51:00,031   788ms _Default               Page_Load          - Debug logging
+INFO  2014-01-18 17:51:00,128   885ms _Default               Page_Load          - Info logging
+WARN  2014-01-18 17:51:00,129   886ms _Default               Page_Load          - Warn logging
+ERROR 2014-01-18 17:51:00,130   887ms _Default               Page_Load          - Error logging
+FATAL 2014-01-18 17:51:00,132   889ms _Default               Page_Load          - Fatal logging
