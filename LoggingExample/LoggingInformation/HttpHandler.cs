@@ -4,17 +4,15 @@ namespace LoggingInformation
 {
     using System;
     using System.IO;
+    using System.Text.RegularExpressions;
     using System.Web;
+    using System.Linq;
+using System.Text;
 
     public class HttpHandler : IHttpHandler
     {
+        
 
-        private string LogFileFolderUrl = System.Web.Configuration.WebConfigurationManager.AppSettings["LogFileLocation"].ToString();
-        /// <summary>
-        /// You will need to configure this handler in the Web.config file of your 
-        /// web and register it with IIS before being able to use it. For more information
-        /// see the following link: http://go.microsoft.com/?linkid=8101007
-        /// </summary>
         #region IHttpHandler Members
 
         public bool IsReusable
@@ -26,15 +24,11 @@ namespace LoggingInformation
 
         public void ProcessRequest(HttpContext context)
         {
-
-            
-            var date = context.Request.QueryString["date"];
-
-            if (date != null && !string.IsNullOrEmpty(date.ToString()))
+            var LogFileFolderUrl = System.Web.Configuration.WebConfigurationManager.AppSettings["LogFileLocation"].ToString();
+            var filename = context.Request.QueryString["filename"];
+            if (filename != null && !string.IsNullOrEmpty(filename.ToString()))
             {
-
-
-                LogFileFolderUrl = LogFileFolderUrl + date + ".log";
+                LogFileFolderUrl = LogFileFolderUrl + filename;
 
                 if (string.IsNullOrEmpty(LogFileFolderUrl))
                 {
@@ -51,7 +45,7 @@ namespace LoggingInformation
                     HttpContext.Current.Response.ClearContent();
                     HttpContext.Current.Response.AppendHeader("Content-Length", fi.Length.ToString());
                     HttpContext.Current.Response.ContentType = "text/plain";
-                    HttpContext.Current.Response.AppendHeader("Content-Disposition", "attachment; filename=LogFile" + date + ".log");
+                    HttpContext.Current.Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename);
                     HttpContext.Current.Response.BinaryWrite(ReadByteArryFromFile(destPath));
                     HttpContext.Current.Response.End();
                 }
@@ -64,7 +58,6 @@ namespace LoggingInformation
                 HttpContext.Current.Response.ClearContent();
                 HttpContext.Current.Response.AppendHeader("Content-Length", strHtml.Length.ToString());
                 HttpContext.Current.Response.ContentType = "text/html";
-                //HttpContext.Current.Response.AppendHeader("Content-Disposition", "attachment; filename=LogFile" + date + ".log");
                 HttpContext.Current.Response.Write(strHtml);
                 HttpContext.Current.Response.End();
             }
@@ -84,14 +77,23 @@ namespace LoggingInformation
 
         private string ShowLogFiles(string LogFolderPath)
         {
-            var files = Directory.GetFiles(LogFolderPath, "*.log");
-            var rtnstr = string.Empty;
+            var sbreturnstring = new StringBuilder();
+            var dir = new DirectoryInfo(LogFolderPath);
+
+            FileInfo[] files = dir.GetFiles().OrderBy(d => d.CreationTime).ToArray();
+            
+            sbreturnstring.Append("<div style='margin:2% 10%'><h1>Log Files Downloader</h1><ul>");
+
             foreach (var item in files)
             {
-                rtnstr += "<div style='padding:10px;margin:10px;background:#ddd;border:1px solid #eee;'>"+item+"</div>";
+                sbreturnstring.Append("<li style='display: inline-block;border:2px solid #eee;background:#ddd;padding:5px;margin:5px;'><div style='display:block;'>")
+                    .Append("<span style='display:block;'>").Append(item.FullName.Substring(item.FullName.LastIndexOf("\\") + 1)).Append("</span>")
+                    .Append("<span style='display:block;'>").Append("<a href='/showlog.axd?filename=")
+                    .Append(item.FullName.Substring(item.FullName.LastIndexOf("\\") + 1)).Append("'>Download</a></span>")
+                    .Append("</div></li>");
             }
-
-            return rtnstr;
+            sbreturnstring.Append("</ul>");
+            return sbreturnstring.ToString();
         }
 
         #endregion
